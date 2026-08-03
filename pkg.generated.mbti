@@ -1,0 +1,119 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lywhite/moonbit-counterpoint"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn absolute_melodic_interval(Note, Note) -> Int
+
+pub fn analyze_counterpoint(Array[Note], Array[Note], options? : AnalysisOptions) -> Analysis
+
+pub fn analyze_harmony(Array[Note], Array[Note], AnalysisOptions) -> Array[Finding]
+
+pub fn analyze_melody(Array[Note], AnalysisOptions) -> Array[Finding]
+
+pub fn analyze_species_shape(Array[Note], Array[Note], AnalysisOptions) -> Array[Finding]
+
+pub fn direction(Note, Note) -> Direction
+
+pub fn format_analysis(Analysis) -> String
+
+pub fn format_finding(Finding) -> String
+
+pub fn harmonic_interval(Note, Note) -> Int
+
+pub fn interval_class(Int) -> Int
+
+pub fn is_consonance(Int) -> Bool
+
+pub fn is_dissonance(Int) -> Bool
+
+pub fn is_imperfect_consonance(Int) -> Bool
+
+pub fn is_perfect_consonance(Int) -> Bool
+
+pub fn melodic_interval(Note, Note) -> Int
+
+pub fn motion(Note, Note, Note, Note) -> MotionKind
+
+// Errors
+
+// Types and methods
+pub(all) struct Analysis {
+  species : Species
+  findings : Array[Finding]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Analysis::is_clean(Self) -> Bool
+
+pub(all) struct AnalysisOptions {
+  species : Species
+  strict_cadence : Bool
+  max_melody_span : Int
+  max_leap : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn AnalysisOptions::default(species~ : Species) -> Self
+
+pub(all) enum Direction {
+  Up
+  Down
+  Same
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct Finding {
+  rule : RuleKind
+  severity : Severity
+  index : Int
+  message : String
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Finding::error(rule~ : RuleKind, index~ : Int, message~ : String) -> Self
+pub fn Finding::warning(rule~ : RuleKind, index~ : Int, message~ : String) -> Self
+
+pub(all) enum MotionKind {
+  Parallel
+  Similar
+  Contrary
+  Oblique
+  Static
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct Note {
+  midi : Int
+  onset : Int
+  duration : Int
+  tied_from_previous : Bool
+  label : String
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Note::new(midi~ : Int, onset~ : Int, duration~ : Int, tied_from_previous? : Bool, label? : String) -> Self
+
+pub(all) enum RuleKind {
+  ParallelPerfect
+  HiddenPerfect
+  VoiceCrossing
+  DissonancePlacement
+  MelodyRange
+  LargeLeap
+  LeapRecovery
+  SpeciesRhythm
+  CadenceShape
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum Severity {
+  Error
+  Warning
+  Info
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum Species {
+  First
+  Second
+  Third
+  Fourth
+  Fifth
+} derive(Eq, ToJson, @debug.Debug)
+
+// Type aliases
+
+// Traits
+
