@@ -1,0 +1,5 @@
+import {
+  "lywhite/moonbit-counterpoint" @counterpoint,
+}
+
+pkgtype(kind: "executable")
