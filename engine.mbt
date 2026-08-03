@@ -35,7 +35,7 @@ pub fn analyze_counterpoint(
 
 ///|
 pub fn format_finding(finding : Finding) -> String {
-  "[\{to_repr(finding.severity)}] \{to_repr(finding.rule)} at \{finding.index}: \{finding.message}"
+  "[\{Repr(finding.severity)}] \{Repr(finding.rule)} at \{finding.index}: \{finding.message}"
 }
 
 ///|
