@@ -15,6 +15,30 @@ pub fn Analysis::is_clean(self : Analysis) -> Bool {
 }
 
 ///|
+fn severity_name(severity : Severity) -> String {
+  match severity {
+    Error => "Error"
+    Warning => "Warning"
+    Info => "Info"
+  }
+}
+
+///|
+fn rule_name(rule : RuleKind) -> String {
+  match rule {
+    ParallelPerfect => "ParallelPerfect"
+    HiddenPerfect => "HiddenPerfect"
+    VoiceCrossing => "VoiceCrossing"
+    DissonancePlacement => "DissonancePlacement"
+    MelodyRange => "MelodyRange"
+    LargeLeap => "LargeLeap"
+    LeapRecovery => "LeapRecovery"
+    SpeciesRhythm => "SpeciesRhythm"
+    CadenceShape => "CadenceShape"
+  }
+}
+
+///|
 pub fn analyze_counterpoint(
   cantus : Array[Note],
   counter : Array[Note],
@@ -35,7 +59,7 @@ pub fn analyze_counterpoint(
 
 ///|
 pub fn format_finding(finding : Finding) -> String {
-  "[\{Repr(finding.severity)}] \{Repr(finding.rule)} at \{finding.index}: \{finding.message}"
+  "[\{severity_name(finding.severity)}] \{rule_name(finding.rule)} at \{finding.index}: \{finding.message}"
 }
 
 ///|
