@@ -15,7 +15,7 @@ version = "0.1.0"
 
 readme = "README.mbt.md"
 
-repository = "https://github.com/lywhite/moonbit-counterpoint"
+repository = "https://github.com/lyyjavastudy/moonbit-counterpoint"
 
 license = "Apache-2.0"
 
