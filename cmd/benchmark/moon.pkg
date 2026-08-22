@@ -1,5 +1,5 @@
 import {
-  "lywhite/moonbit-counterpoint" @counterpoint,
+  "lyyjavastudy/moonbit-counterpoint" @counterpoint,
 }
 
 pkgtype(kind: "executable")

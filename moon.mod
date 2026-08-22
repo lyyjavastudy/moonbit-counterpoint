@@ -9,7 +9,7 @@
 //   "moonbitlang/x@0.4.6",
 // }
 
-name = "lywhite/moonbit-counterpoint"
+name = "lyyjavastudy/moonbit-counterpoint"
 
 version = "0.2.0"
 
