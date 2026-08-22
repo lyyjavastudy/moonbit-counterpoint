@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 - 2026-08-22
+
+- Expanded the production library with meter, contour, statistics, sonority,
+  candidate, phrase-planning, teaching, quality-gate, pipeline, interchange,
+  batch-report, and scorecard APIs.
+- Added 120 structured practice exercises and rule explanation cards.
+- Added end-to-end production API tests and raised the suite to 711 tests.
+
 ## 0.2.0 - 2026-08-22
 
 - Added rule profiles, timeline validation, pitch/register helpers, voice-range

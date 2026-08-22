@@ -10,9 +10,13 @@ pub fn absolute_melodic_interval(Note, Note) -> Int
 
 pub fn active_at(Array[Note], Int) -> Array[Note]
 
+pub fn add_snapshot(AnalysisHistory, AnalysisSnapshot) -> AnalysisHistory
+
 pub fn aligned_pairs(Array[Note], Array[Note]) -> Int
 
 pub fn analysis_csv(Analysis) -> String
+
+pub fn analysis_fingerprint(Analysis) -> String
 
 pub fn analysis_has_rule(Analysis, RuleKind) -> Bool
 
@@ -20,9 +24,15 @@ pub fn analysis_indices(Analysis) -> Array[Int]
 
 pub fn analysis_is_empty(Analysis) -> Bool
 
+pub fn analysis_manifest(Analysis) -> Array[String]
+
+pub fn analysis_manifest_text(Analysis) -> String
+
 pub fn analysis_markdown(Analysis) -> String
 
 pub fn analysis_title(Analysis) -> String
+
+pub fn analyze_batch(Array[Note], Array[Array[Note]], RuleProfileConfig) -> Array[AnalysisSummary]
 
 pub fn analyze_counterpoint(Array[Note], Array[Note], options? : AnalysisOptions) -> Analysis
 
@@ -34,21 +44,245 @@ pub fn analyze_species_shape(Array[Note], Array[Note], AnalysisOptions) -> Array
 
 pub fn analyze_with_profile(Array[Note], Array[Note], RuleProfileConfig) -> Analysis
 
+pub fn api_health(Array[Note], Meter) -> Bool
+
+pub fn api_health_message(Array[Note], Meter) -> String
+
+pub fn append_report_section(ReportDocument, ReportSection) -> ReportDocument
+
+pub fn apply_transformation(Array[Note], Transformation) -> Array[Note]
+
 pub fn assess_voice(Array[Note], VoiceRole, VoiceRange) -> VoiceAssessment
+
+pub fn average_interval(Array[Note]) -> Int
 
 pub fn average_pitch(Array[Note]) -> Int
 
+pub fn batch_average(BatchReport) -> Int
+
+pub fn batch_best_label(BatchReport) -> String?
+
+pub fn batch_count(BatchReport) -> Int
+
+pub fn batch_csv(BatchReport) -> String
+
+pub fn batch_failure_count(BatchReport) -> Int
+
+pub fn batch_improvement(BatchReport) -> Int
+
+pub fn batch_is_better_than(BatchReport, Int) -> Bool
+
+pub fn batch_manifest(BatchReport) -> Array[String]
+
+pub fn batch_markdown(BatchReport) -> String
+
+pub fn batch_pass_count(BatchReport) -> Int
+
+pub fn batch_quality(BatchReport) -> String
+
+pub fn batch_report(Array[Note], Array[Array[Note]], Array[String], RuleProfileConfig) -> BatchReport
+
+pub fn batch_scores(BatchReport) -> Array[Int]
+
+pub fn beat_label(BeatPoint) -> String
+
+pub fn beat_of(Meter, Int) -> Int
+
+pub fn beat_point(Meter, Int, Int) -> BeatPoint
+
+pub fn beat_points(Meter, Array[Note]) -> Array[BeatPoint]
+
+pub fn beat_strength(Meter, Int) -> BeatStrength
+
+pub fn best_candidate(Array[PitchCandidate]) -> PitchCandidate?
+
+pub fn best_candidates(Array[PitchCandidate], Int) -> Array[PitchCandidate]
+
+pub fn best_pipeline(PipelineInput) -> PipelineOutput
+
+pub fn best_profile_result(Array[ProfileResult]) -> ProfileResult?
+
+pub fn best_variant(Array[Note], Array[Array[Note]], RuleProfileConfig) -> Array[Note]?
+
+pub fn cadence_candidates(Note, Int, CandidatePolicy) -> Array[PitchCandidate]
+
+pub fn cadence_distance(Array[Note], Int) -> Int
+
+pub fn cadence_message(PhrasePlan) -> String
+
+pub fn cadence_plan(Array[Note], Array[Note]) -> CadencePlan
+
+pub fn candidate_count_in_range(Array[PitchCandidate], Int, Int) -> Int
+
+pub fn candidate_has_rule(PitchCandidate, RuleKind) -> Bool
+
+pub fn candidate_is_allowed(Note, Note?, Note, CandidatePolicy) -> Bool
+
+pub fn candidate_motion(Note, Note, Note, Note) -> MotionKind
+
+pub fn candidate_note(Note, Int) -> Note
+
+pub fn candidate_range(Array[PitchCandidate]) -> Int
+
+pub fn candidate_score(Int, Int, MotionKind, CandidatePolicy) -> Int
+
+pub fn candidate_scores(Array[PitchCandidate]) -> Array[Int]
+
+pub fn cap_quality(Int) -> Int
+
+pub fn cards_for_level(String) -> Array[RuleCard]
+
+pub fn cards_for_rule(RuleKind) -> Array[RuleCard]
+
+pub fn cards_for_topic(String) -> Array[RuleCard]
+
+pub fn catalog_levels() -> Array[String]
+
+pub fn catalog_topics() -> Array[String]
+
 pub fn compact_report(Analysis) -> String
+
+pub fn compact_report_document(ReportDocument) -> String
+
+pub fn compare_contours(Array[Note], Array[Note]) -> Int
+
+pub fn compare_pitch_statistics(Array[Note], Array[Note]) -> Int
 
 pub fn compare_profiles(Array[Note], Array[Note]) -> Array[AnalysisSummary]
 
 pub fn compare_scores(Analysis, Analysis, RuleProfileConfig) -> Int
 
+pub fn compress_sequence(Array[Note], Int) -> Array[Note]
+
+pub fn consecutive_perfects(Array[Note], Array[Note]) -> Array[Int]
+
+pub fn consonance_class(Int) -> ConsonanceClass
+
+pub fn consonance_class_name(ConsonanceClass) -> String
+
+pub fn constrained_quality(Array[Note], Array[Note], MotionConstraint) -> Int
+
+pub fn contour_balance(Array[Note]) -> Int
+
+pub fn contour_label(ContourStep) -> String
+
+pub fn contour_preserved_after_transpose(Array[Note], Int) -> Bool
+
+pub fn contour_range(Array[Note]) -> Int
+
+pub fn contour_section(Array[Note]) -> ReportSection
+
+pub fn contour_step(Note, Note) -> ContourStep
+
+pub fn contour_steps(Array[Note]) -> Array[ContourStep]
+
+pub fn contour_summary(Array[Note]) -> ContourSummary
+
+pub fn contrary_motion_count(Array[Note], Array[Note]) -> Int
+
+pub fn contrary_motion_ratio(Array[Note], Array[Note]) -> Int
+
+pub fn count_contour(Array[Note], ContourStep) -> Int
+
+pub fn count_direction(Array[Note], Direction) -> Int
+
 pub fn count_duration(Array[Note], Int) -> Int
 
 pub fn crossing_count(Array[Note], Array[Note]) -> Int
 
+pub fn default_practice_plan(RuleKind) -> PracticePlan
+
+pub fn density_by_measure(Meter, Array[Note]) -> Array[Int]
+
 pub fn direction(Note, Note) -> Direction
+
+pub fn direction_name(Direction) -> String
+
+pub fn dissonance_ratio(Array[Note], Array[Note]) -> Int
+
+pub fn duration_between(Array[Note], Int, Int) -> Int
+
+pub fn duration_histogram(Array[Note]) -> Array[Int]
+
+pub fn duration_ratio(Array[Note], Int) -> Int
+
+pub fn edit_distance(Array[Note], Array[Note]) -> Int
+
+pub fn empty_history() -> AnalysisHistory
+
+pub fn envelope(String, Meter, Array[Note]) -> SequenceEnvelope
+
+pub fn envelope_notes(SequenceEnvelope) -> Array[Note]
+
+pub fn envelope_summary(SequenceEnvelope) -> String
+
+pub fn evaluate_motion(Note, Note, Note, Note, MotionConstraint) -> MotionResult
+
+pub fn evaluate_practice(PracticePlan, Int, Int) -> PracticeResult
+
+pub fn evaluate_voice_leading(Array[Note], Array[Note], MotionConstraint) -> Array[MotionResult]
+
+pub fn event_count_between(Array[Note], Int, Int) -> Int
+
+pub fn exercise(String) -> ExerciseSpec?
+
+pub fn exercise_catalog() -> Array[ExerciseSpec]
+
+pub fn exercise_catalog_markdown(RuleKind) -> String
+
+pub fn exercise_count() -> Int
+
+pub fn exercise_minutes(ExerciseSpec) -> Int
+
+pub fn exercise_objective(ExerciseSpec) -> String
+
+pub fn exercise_prompt(ExerciseSpec) -> String
+
+pub fn exercise_summary(ExerciseSpec) -> String
+
+pub fn exercise_target(ExerciseSpec) -> String
+
+pub fn exercises_for_level(String) -> Array[ExerciseSpec]
+
+pub fn exercises_for_rule(RuleKind) -> Array[ExerciseSpec]
+
+pub fn exercises_for_species(Species) -> Array[ExerciseSpec]
+
+pub fn export_csv(AnalysisExport) -> String
+
+pub fn export_findings_count(AnalysisExport) -> Int
+
+pub fn export_findings_for(AnalysisExport, RuleKind) -> Array[String]
+
+pub fn export_grade(AnalysisExport) -> String
+
+pub fn export_has_fingerprint(AnalysisExport, String) -> Bool
+
+pub fn export_is_clean(AnalysisExport) -> Bool
+
+pub fn export_line_count(AnalysisExport) -> Int
+
+pub fn export_markdown(AnalysisExport) -> String
+
+pub fn export_profile(AnalysisExport) -> String
+
+pub fn export_recommendation_count(AnalysisExport) -> Int
+
+pub fn export_score(AnalysisExport) -> Int
+
+pub fn export_summary_line(AnalysisExport) -> String
+
+pub fn export_to_sections(AnalysisExport) -> Array[ReportSection]
+
+pub fn feature_count() -> Int
+
+pub fn filter_by_beat(Meter, Array[Note], BeatStrength) -> Array[Note]
+
+pub fn filter_by_duration(Array[Note], Int) -> Array[Note]
+
+pub fn filter_by_range(Array[Note], Int, Int) -> Array[Note]
+
+pub fn final_sonority_is_valid(Array[Note], Array[Note]) -> Bool
 
 pub fn finding_count(Analysis, RuleKind) -> Int
 
@@ -58,17 +292,99 @@ pub fn findings_for(Analysis, Severity) -> Array[Finding]
 
 pub fn findings_for_rule(Analysis, RuleKind) -> Array[Finding]
 
+pub fn findings_section(Analysis) -> ReportSection
+
+pub fn first_dissonance(Array[Note], Array[Note]) -> Int?
+
 pub fn first_pitch(Array[Note]) -> Int?
 
 pub fn format_analysis(Analysis) -> String
 
 pub fn format_finding(Finding) -> String
 
+pub fn format_note_row(NoteRow) -> String
+
+pub fn format_sequence(Array[Note]) -> String
+
+pub fn gap_count(Array[Note]) -> Int
+
+pub fn gate_count(QualityGateReport, GateStatus) -> Int
+
+pub fn gate_for_motion(VoiceLeadingSummary) -> QualityGate
+
+pub fn gate_for_sequence(SequenceReport, String) -> QualityGate
+
+pub fn gate_for_summary(AnalysisSummary) -> QualityGate
+
+pub fn gate_status_name(GateStatus) -> String
+
+pub fn generate_candidates(Note, Note?, CandidatePolicy) -> Array[PitchCandidate]
+
+pub fn generate_voice_candidates(Note, Note, Note?, CandidatePolicy) -> CandidateBatch
+
 pub fn harmonic_interval(Note, Note) -> Int
+
+pub fn harmonic_motion_count(Array[Note], Array[Note], String) -> Int
+
+pub fn harmonic_motion_labels(Array[Note], Array[Note]) -> Array[String]
+
+pub fn harmonic_signature(Array[Note], Array[Note]) -> String
+
+pub fn harmony_section(Array[Note], Array[Note]) -> ReportSection
+
+pub fn harmony_summary(Array[Note], Array[Note]) -> HarmonySummary
+
+pub fn has_feature(String) -> Bool
+
+pub fn health_summary() -> String
+
+pub fn hidden_perfect_indices(Array[Note], Array[Note]) -> Array[Int]
 
 pub fn highest_severity(Analysis) -> Severity?
 
+pub fn history_average(AnalysisHistory) -> Int
+
+pub fn history_best(AnalysisHistory) -> AnalysisSnapshot?
+
+pub fn history_delta(AnalysisHistory, Int, Int) -> Int?
+
+pub fn history_errors(AnalysisHistory) -> Int
+
+pub fn history_fingerprint(AnalysisHistory) -> String
+
+pub fn history_from_validations(Array[String], Array[PairValidation]) -> AnalysisHistory
+
+pub fn history_is_improving(AnalysisHistory) -> Bool
+
+pub fn history_latest(AnalysisHistory) -> AnalysisSnapshot?
+
+pub fn history_markdown(AnalysisHistory) -> String
+
+pub fn history_scores(AnalysisHistory) -> Array[Int]
+
+pub fn history_warnings(AnalysisHistory) -> Int
+
 pub fn interval_class(Int) -> Int
+
+pub fn interval_class_name(Int) -> String
+
+pub fn interval_is_stable(Int) -> Bool
+
+pub fn interval_profile(Array[Note]) -> Array[Int]
+
+pub fn interval_size(Int) -> IntervalSize
+
+pub fn interval_size_name(IntervalSize) -> String
+
+pub fn interval_statistics(Array[Note]) -> IntervalStatistics
+
+pub fn interval_tension(Int) -> Int
+
+pub fn invert_sequence(Array[Note], Int) -> Array[Note]
+
+pub fn is_accented(BeatPoint) -> Bool
+
+pub fn is_arch_shape(Array[Note]) -> Bool
 
 pub fn is_black_key(Int) -> Bool
 
@@ -80,57 +396,343 @@ pub fn is_extreme_register(Int) -> Bool
 
 pub fn is_imperfect_consonance(Int) -> Bool
 
+pub fn is_leap(Int) -> Bool
+
+pub fn is_measure_boundary(Meter, Int) -> Bool
+
 pub fn is_perfect_consonance(Int) -> Bool
+
+pub fn is_step(Int) -> Bool
+
+pub fn is_valley_shape(Array[Note]) -> Bool
+
+pub fn is_weak(BeatPoint) -> Bool
+
+pub fn labels_text(Array[Note]) -> String
+
+pub fn largest_repeated_run(Array[Note]) -> Int
+
+pub fn last_dissonance(Array[Note], Array[Note]) -> Int?
 
 pub fn last_pitch(Array[Note]) -> Int?
 
+pub fn learning_objective(RuleKind) -> String
+
+pub fn lesson_prompts(LessonStage) -> Array[String]
+
+pub fn lesson_stage_index(LessonStage) -> Int
+
+pub fn lesson_stage_name(LessonStage) -> String
+
+pub fn lesson_stage_order() -> Array[LessonStage]
+
+pub fn lesson_step(Int, LessonStage, String, String, RuleKind?) -> LessonStep
+
+pub fn library_name() -> String
+
+pub fn library_version() -> String
+
+pub fn make_analysis_export(String, RuleProfileConfig, Analysis) -> AnalysisExport
+
+pub fn make_scorecard(PipelineOutput) -> Scorecard
+
+pub fn make_segment(Array[Note], Int, Int, PhraseRole) -> PhraseSegment
+
+pub fn manifest(RuleProfileConfig, Meter) -> Array[String]
+
+pub fn manifest_text(RuleProfileConfig, Meter) -> String
+
+pub fn maximum_density(Meter, Array[Note]) -> Int
+
+pub fn measure_of(Meter, Int) -> Int
+
 pub fn melodic_interval(Note, Note) -> Int
+
+pub fn melodic_interval_histogram(Array[Note]) -> Array[Int]
+
+pub fn merge_sequences(Array[Note], Array[Note]) -> Array[Note]
 
 pub fn motion(Note, Note, Note, Note) -> MotionKind
 
+pub fn motion_acceptance_rate(VoiceLeadingSummary) -> Int
+
+pub fn motion_cost(MotionKind) -> Int
+
+pub fn motion_rejection_indices(Array[Note], Array[Note], MotionConstraint) -> Array[Int]
+
+pub fn next_exercise(RuleKind, Array[String]) -> ExerciseSpec?
+
+pub fn next_lesson_stage(LessonStage) -> LessonStage
+
+pub fn normalize_onsets(Array[Note]) -> Array[Note]
+
+pub fn normalize_phrase(Array[Note], Int, Int) -> Array[Note]
+
 pub fn normalize_pitch(Int, Int, Int) -> Int
+
+pub fn note_at_index(Array[Note], Int) -> Note?
 
 pub fn note_end(Note) -> Int
 
+pub fn note_indices(Array[Note]) -> Array[Int]
+
 pub fn note_name(Note) -> String
+
+pub fn note_row_header() -> String
+
+pub fn note_row_to_line(NoteRow) -> String
 
 pub fn note_with_pitch(Note, Int) -> Note
 
 pub fn notes_at(Array[Note], Int) -> Array[Note]
 
+pub fn notes_from_pitches(Array[Int], Int) -> Array[Note]
+
+pub fn notes_from_rows(Array[NoteRow]) -> Array[Note]
+
+pub fn notes_to_lines(Array[Note]) -> Array[String]
+
+pub fn notes_to_pitches(Array[Note]) -> Array[Int]
+
+pub fn notes_to_tsv(Array[Note]) -> String
+
+pub fn notes_with_labels(Array[Note]) -> Array[String]
+
 pub fn octave_number(Int) -> Int
 
+pub fn onset_histogram(Array[Note], Int) -> Array[Int]
+
 pub fn onset_span(Array[Note]) -> Int
+
+pub fn package_ready() -> Bool
+
+pub fn pair_statistics(Array[Note], Array[Note]) -> PairStatistics
+
+pub fn parallel_perfect_indices(Array[Note], Array[Note]) -> Array[Int]
+
+pub fn perfect_ratio(Array[Note], Array[Note]) -> Int
+
+pub fn phrase_is_cadential(PhrasePlan) -> Bool
+
+pub fn phrase_length(PhrasePlan) -> Int
+
+pub fn phrase_role_counts(PhrasePlan) -> Array[Int]
+
+pub fn pipeline_compare(PipelineOutput, PipelineOutput) -> Int
+
+pub fn pipeline_grade(PipelineOutput) -> String
+
+pub fn pipeline_has_quality_flag(PipelineOutput, String) -> Bool
+
+pub fn pipeline_has_rule(PipelineOutput, RuleKind) -> Bool
+
+pub fn pipeline_is_explainable(PipelineOutput) -> Bool
+
+pub fn pipeline_manifest(PipelineOutput) -> Array[String]
+
+pub fn pipeline_manifest_text(PipelineOutput) -> String
+
+pub fn pipeline_markdown(PipelineOutput) -> String
+
+pub fn pipeline_passed(PipelineOutput) -> Bool
+
+pub fn pipeline_profile(PipelineOutput) -> String
+
+pub fn pipeline_profiles(PipelineInput) -> Array[PipelineOutput]
+
+pub fn pipeline_quality_flags(PipelineOutput) -> Array[String]
+
+pub fn pipeline_recommendation_count(PipelineOutput) -> Int
+
+pub fn pipeline_report_section_count(PipelineOutput) -> Int
+
+pub fn pipeline_rule_count(PipelineOutput, RuleKind) -> Int
+
+pub fn pipeline_score(PipelineOutput) -> Int
+
+pub fn pipeline_summary(PipelineOutput) -> String
+
+pub fn pipeline_with_profile(PipelineInput, RuleProfileConfig) -> PipelineOutput
 
 pub fn pitch_class(Int) -> PitchClass
 
 pub fn pitch_class_name(PitchClass) -> String
 
+pub fn pitch_edit_distance(Array[Note], Array[Note]) -> Int
+
 pub fn pitch_histogram(Array[Note]) -> Array[Int]
 
 pub fn pitch_label(Int) -> String
 
+pub fn pitch_rows(Int, Int, Int, Int) -> Array[NoteRow]
+
+pub fn pitch_statistics(Array[Note]) -> PitchStatistics
+
+pub fn pitch_variance_proxy(Array[Note]) -> Int
+
 pub fn pitches(Array[Note]) -> Array[Int]
+
+pub fn plan_for_analysis(Analysis) -> PracticePlan
+
+pub fn plan_is_complete(PracticeResult) -> Bool
+
+pub fn plan_markdown(PracticePlan) -> String
+
+pub fn plan_phrase(Array[Note], Array[Note], Int) -> PhrasePlan
+
+pub fn plan_progress(PracticeResult) -> Int
+
+pub fn plan_step(PracticePlan, Int) -> LessonStep?
+
+pub fn practice_section(Analysis) -> ReportSection
+
+pub fn production_features() -> Array[String]
 
 pub fn profile_config(RuleProfile) -> RuleProfileConfig
 
+pub fn profile_improvement(Array[ProfileResult]) -> Int
+
 pub fn profile_labels() -> Array[String]
+
+pub fn profile_result(RuleProfileConfig, Analysis) -> ProfileResult
+
+pub fn profile_result_markdown(Array[ProfileResult]) -> String
+
+pub fn profile_result_table(Array[ProfileResult]) -> String
+
+pub fn profile_results(Array[Note], Array[Note]) -> Array[ProfileResult]
+
+pub fn quality_gate_actions(QualityGateReport) -> Array[String]
+
+pub fn quality_gate_markdown(QualityGateReport) -> String
+
+pub fn quality_gate_passed(QualityGateReport) -> Bool
+
+pub fn quality_gate_report(PairValidation, VoiceLeadingSummary) -> QualityGateReport
+
+pub fn quality_gate_score(QualityGateReport) -> Int
+
+pub fn quantize_note(Note, Int) -> Note
+
+pub fn quantize_sequence(Array[Note], Int) -> Array[Note]
+
+pub fn quantize_time(Int, Int) -> Int
+
+pub fn ready_message() -> String
+
+pub fn recommendation_count_for_rule(Analysis, RuleKind) -> Int
+
+pub fn recommendation_for_finding(Finding) -> Recommendation
+
+pub fn recommendation_markdown(Recommendation) -> String
+
+pub fn recommendation_section(Analysis) -> ReportSection
+
+pub fn recommendations(Analysis) -> Array[Recommendation]
+
+pub fn recommendations_markdown(Analysis) -> String
+
+pub fn register_bands(Array[Note], Int) -> Array[RegisterBand]
 
 pub fn register_distance(Array[Note], Int) -> Int
 
+pub fn render_document(ReportDocument) -> String
+
+pub fn render_section(ReportSection) -> String
+
+pub fn repeated_run_lengths(Array[Note]) -> Array[Int]
+
+pub fn replace_note(Array[Note], Int, Note) -> Array[Note]
+
+pub fn replace_pitch(Array[Note], Int, Int) -> Array[Note]
+
+pub fn report_contains(ReportDocument, String) -> Bool
+
+pub fn report_document(String, Analysis, Meter, Array[Note], Array[Note]) -> ReportDocument
+
 pub fn report_line_count(Analysis) -> Int
+
+pub fn report_quality_score(ReportDocument, Analysis) -> Int
+
+pub fn report_section_count(ReportDocument) -> Int
+
+pub fn report_section_ids(ReportDocument) -> Array[String]
+
+pub fn report_with_manifest(ReportDocument, RuleProfileConfig, Meter) -> ReportDocument
+
+pub fn report_word_count(ReportDocument) -> Int
+
+pub fn retrograde_sequence(Array[Note]) -> Array[Note]
+
+pub fn rhythm_density(Meter, Array[Note]) -> Int
+
+pub fn rhythm_section(Meter, Array[Note]) -> ReportSection
+
+pub fn role_for_segment(Int, Int) -> PhraseRole
+
+pub fn rotate_sequence(Array[Note], Int) -> Array[Note]
+
+pub fn rows_from_notes(Array[Note]) -> Array[NoteRow]
+
+pub fn rule_card(RuleKind, Int) -> RuleCard?
+
+pub fn rule_card_count() -> Int
+
+pub fn rule_cards() -> Array[RuleCard]
+
+pub fn rule_explanation(RuleKind) -> String
+
+pub fn rule_family(RuleKind) -> String
 
 pub fn rule_is_harmonic(RuleKind) -> Bool
 
 pub fn rule_is_structural(RuleKind) -> Bool
 
+pub fn rule_learning_level(RuleKind) -> String
+
+pub fn rule_remedy(RuleKind) -> String
+
+pub fn rule_topic_name(RuleTopic) -> String
+
+pub fn run_pipeline(PipelineInput) -> PipelineOutput
+
+pub fn safe_transformations() -> Array[Transformation]
+
+pub fn same_interval_profile(Array[Note], Array[Note]) -> Bool
+
+pub fn same_sequence(Array[Note], Array[Note]) -> Bool
+
 pub fn scale_time(Array[Note], Int) -> Array[Note]
 
 pub fn score_for(Analysis, RuleProfileConfig) -> Int
 
+pub fn scorecard_action(Scorecard) -> String
+
+pub fn scorecard_compare(Scorecard, Scorecard) -> Int
+
+pub fn scorecard_csv(Scorecard) -> String
+
+pub fn scorecard_dimensions(Scorecard) -> Array[Int]
+
+pub fn scorecard_grade(Scorecard) -> String
+
+pub fn scorecard_markdown(Scorecard) -> String
+
+pub fn scorecard_passed(Scorecard) -> Bool
+
+pub fn section_by_id(ReportDocument, String) -> ReportSection?
+
+pub fn sections_by_priority(ReportDocument, Int) -> Array[ReportSection]
+
+pub fn sections_for_analysis(Analysis, Meter, Array[Note], Array[Note]) -> Array[ReportSection]
+
+pub fn segment_phrase(Array[Note], Int) -> Array[PhraseSegment]
+
 pub fn semitone_distance(PitchClass, PitchClass) -> Int
 
 pub fn sequence_end(Array[Note]) -> Int
+
+pub fn sequence_fingerprint(Array[Note]) -> String
 
 pub fn sequence_markdown(SequenceReport) -> String
 
@@ -138,23 +740,95 @@ pub fn sequence_report(Array[Note]) -> SequenceReport
 
 pub fn severity_rank(Severity) -> Int
 
+pub fn shift_onsets(Array[Note], Int) -> Array[Note]
+
+pub fn snapshot(String, PairValidation) -> AnalysisSnapshot
+
+pub fn species_count() -> Int
+
+pub fn split_points(Array[Note], Int) -> Array[Int]
+
+pub fn stable_event_indices(Array[Note], Array[Note]) -> Array[Int]
+
+pub fn stretch_sequence(Array[Note], Int) -> Array[Note]
+
 pub fn summarize(Analysis) -> AnalysisSummary
+
+pub fn summarize_rhythm(Meter, Array[Note]) -> RhythmSummary
+
+pub fn summarize_voice_leading(Array[Note], Array[Note], MotionConstraint) -> VoiceLeadingSummary
 
 pub fn summary_csv(AnalysisSummary) -> String
 
+pub fn summary_section(Analysis) -> ReportSection
+
+pub fn supported_profile_count() -> Int
+
+pub fn supported_rule_count() -> Int
+
+pub fn supported_species() -> Array[Species]
+
+pub fn syncopation_count(Meter, Array[Note]) -> Int
+
+pub fn teaching_level_name(TeachingLevel) -> String
+
+pub fn tension_profile(Array[Note], Array[Note]) -> Array[Int]
+
 pub fn tied_count(Array[Note]) -> Int
 
+pub fn top_recommendations(Analysis, Int) -> Array[Recommendation]
+
 pub fn total_sounding_duration(Array[Note]) -> Int
+
+pub fn total_tension(Array[Note], Array[Note]) -> Int
+
+pub fn transformation_catalog() -> Array[Transformation]
+
+pub fn transformation_count() -> Int
+
+pub fn transformation_description(Transformation) -> String
+
+pub fn transformation_examples(Array[Note]) -> Array[String]
+
+pub fn transformation_is_safe(Transformation) -> Bool
+
+pub fn transformation_name(TransformationKind) -> String
+
+pub fn transformation_round_trip(Array[Note], Int) -> Bool
 
 pub fn transpose(Array[Note], Int) -> Array[Note]
 
 pub fn transpose_pitch_class(PitchClass, Int) -> PitchClass
 
+pub fn transpose_sequence(Array[Note], Int) -> Array[Note]
+
+pub fn trim_after(Array[Note], Int) -> Array[Note]
+
+pub fn trim_before(Array[Note], Int) -> Array[Note]
+
+pub fn turning_points(Array[Note]) -> Array[TurningPoint]
+
+pub fn unescape_field(String) -> String
+
+pub fn unstable_event_indices(Array[Note], Array[Note]) -> Array[Int]
+
 pub fn valid_profiles() -> Array[RuleProfileConfig]
 
 pub fn validate_pair(Array[Note], Array[Note], RuleProfileConfig) -> PairValidation
 
+pub fn vertical_event(Note, Note, Int) -> VerticalEvent
+
+pub fn vertical_events(Array[Note], Array[Note]) -> Array[VerticalEvent]
+
 pub fn voice_crossing_at(Note, Note) -> Bool
+
+pub fn voice_leading_quality(Array[Note], Array[Note]) -> Int
+
+pub fn voice_order_is_stable(Array[Note], Array[Note]) -> Bool
+
+pub fn weakest_dimension(Scorecard) -> String
+
+pub fn weighted_pitch_center(Array[Note]) -> Int
 
 // Errors
 
@@ -165,6 +839,22 @@ pub(all) struct Analysis {
 } derive(Eq, ToJson, @debug.Debug)
 pub fn Analysis::is_clean(Self) -> Bool
 
+pub(all) struct AnalysisExport {
+  title : String
+  profile : String
+  summary : AnalysisSummary
+  findings : Array[String]
+  recommendations : Array[String]
+  fingerprint : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct AnalysisHistory {
+  snapshots : Array[AnalysisSnapshot]
+  best_score : Int
+  latest_score : Int
+  improvement : Int
+} derive(Eq, ToJson, @debug.Debug)
+
 pub(all) struct AnalysisOptions {
   species : Species
   strict_cadence : Bool
@@ -172,6 +862,15 @@ pub(all) struct AnalysisOptions {
   max_leap : Int
 } derive(Eq, ToJson, @debug.Debug)
 pub fn AnalysisOptions::default(species~ : Species) -> Self
+
+pub(all) struct AnalysisSnapshot {
+  label : String
+  score : Int
+  errors : Int
+  warnings : Int
+  notes : Int
+  profile : String
+} derive(Eq, ToJson, @debug.Debug)
 
 pub(all) struct AnalysisSummary {
   total : Int
@@ -186,10 +885,98 @@ pub fn AnalysisSummary::grade(Self) -> String
 pub fn AnalysisSummary::passed(Self) -> Bool
 pub fn AnalysisSummary::severity_total(Self) -> Int
 
+pub(all) struct BatchReport {
+  labels : Array[String]
+  summaries : Array[AnalysisSummary]
+  best_index : Int
+  best_score : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct BeatPoint {
+  index : Int
+  time : Int
+  measure : Int
+  beat : Int
+  strength : BeatStrength
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum BeatStrength {
+  Downbeat
+  Strong
+  Weak
+  Offbeat
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct CadencePlan {
+  penultimate : Int
+  final_pitch : Int
+  final_interval : Int
+  approach : Direction
+  valid : Bool
+  message : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct CandidateBatch {
+  source : Note
+  candidates : Array[PitchCandidate]
+  accepted : Int
+  rejected : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct CandidatePolicy {
+  low : Int
+  high : Int
+  max_leap : Int
+  require_consonance : Bool
+  prefer_contrary : Bool
+  avoid_repetition : Bool
+} derive(Eq, ToJson, @debug.Debug)
+pub fn CandidatePolicy::default() -> Self
+pub fn CandidatePolicy::is_valid(Self) -> Bool
+pub fn CandidatePolicy::strict() -> Self
+
+pub(all) enum ConsonanceClass {
+  Perfect
+  Imperfect
+  Dissonant
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum ContourStep {
+  Rising
+  Falling
+  Repeated
+  LeapUp
+  LeapDown
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct ContourSummary {
+  notes : Int
+  rising : Int
+  falling : Int
+  repeated : Int
+  leaps : Int
+  turning_points : Int
+  first_pitch : Int
+  last_pitch : Int
+  range : Int
+} derive(Eq, ToJson, @debug.Debug)
+
 pub(all) enum Direction {
   Up
   Down
   Same
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct ExerciseSpec {
+  id : String
+  rule : RuleKind
+  species : Species
+  title : String
+  objective : String
+  prompt : String
+  target : String
+  level : String
+  notes : Int
 } derive(Eq, ToJson, @debug.Debug)
 
 pub(all) struct Finding {
@@ -201,12 +988,96 @@ pub(all) struct Finding {
 pub fn Finding::error(rule~ : RuleKind, index~ : Int, message~ : String) -> Self
 pub fn Finding::warning(rule~ : RuleKind, index~ : Int, message~ : String) -> Self
 
+pub(all) enum GateStatus {
+  Pass
+  Review
+  Fail
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct HarmonySummary {
+  events : Int
+  perfect : Int
+  imperfect : Int
+  dissonant : Int
+  crossings : Int
+  highest : Int
+  lowest : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum IntervalSize {
+  Unison
+  Step
+  Third
+  Fourth
+  Fifth
+  Sixth
+  Seventh
+  Octave
+  Compound
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct IntervalStatistics {
+  count : Int
+  minimum : Int
+  maximum : Int
+  mean : Int
+  steps : Int
+  leaps : Int
+  repeated : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum LessonStage {
+  Listen
+  Identify
+  Repair
+  Compose
+  Reflect
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct LessonStep {
+  index : Int
+  stage : LessonStage
+  title : String
+  prompt : String
+  expected_rule : RuleKind?
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct Meter {
+  numerator : Int
+  denominator : Int
+  subdivision : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn Meter::beat_length(Self) -> Int
+pub fn Meter::beats_per_measure(Self) -> Int
+pub fn Meter::is_valid(Self) -> Bool
+pub fn Meter::measure_length(Self) -> Int
+pub fn Meter::new(numerator~ : Int, denominator~ : Int, subdivision? : Int) -> Self
+
+pub(all) struct MotionConstraint {
+  name : String
+  allow_parallel : Bool
+  allow_similar : Bool
+  allow_contrary : Bool
+  allow_oblique : Bool
+  max_leap : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn MotionConstraint::allows(Self, MotionKind) -> Bool
+pub fn MotionConstraint::classroom() -> Self
+pub fn MotionConstraint::strict() -> Self
+
 pub(all) enum MotionKind {
   Parallel
   Similar
   Contrary
   Oblique
   Static
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct MotionResult {
+  motion : MotionKind
+  accepted : Bool
+  cost : Int
+  message : String
 } derive(Eq, ToJson, @debug.Debug)
 
 pub(all) struct Note {
@@ -218,6 +1089,26 @@ pub(all) struct Note {
 } derive(Eq, ToJson, @debug.Debug)
 pub fn Note::new(midi~ : Int, onset~ : Int, duration~ : Int, tied_from_previous? : Bool, label? : String) -> Self
 
+pub(all) struct NoteRow {
+  midi : Int
+  onset : Int
+  duration : Int
+  tied : Bool
+  label : String
+} derive(Eq, ToJson, @debug.Debug)
+pub fn NoteRow::from_note(Note) -> Self
+pub fn NoteRow::to_note(Self) -> Note
+
+pub(all) struct PairStatistics {
+  aligned : Int
+  contrary : Int
+  parallel : Int
+  similar : Int
+  oblique : Int
+  static_motion : Int
+  average_vertical : Int
+} derive(Eq, ToJson, @debug.Debug)
+
 pub(all) struct PairValidation {
   cantus : SequenceReport
   counterpoint : SequenceReport
@@ -228,6 +1119,58 @@ pub(all) struct PairValidation {
 pub fn PairValidation::markdown(Self) -> String
 pub fn PairValidation::passed(Self) -> Bool
 pub fn PairValidation::quality_score(Self) -> Int
+
+pub(all) struct PhrasePlan {
+  segments : Array[PhraseSegment]
+  cadence : CadencePlan
+  total_notes : Int
+  balanced : Bool
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum PhraseRole {
+  Opening
+  Continuation
+  Preparation
+  Cadence
+  Extension
+} derive(Eq, ToJson, @debug.Debug)
+pub fn PhraseRole::label(Self) -> String
+
+pub(all) struct PhraseSegment {
+  start : Int
+  end : Int
+  role : PhraseRole
+  notes : Int
+  pitch_range : Int
+  density : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct PipelineInput {
+  cantus : Array[Note]
+  counterpoint : Array[Note]
+  meter : Meter
+  profile : RuleProfileConfig
+} derive(Eq, ToJson, @debug.Debug)
+pub fn PipelineInput::new(cantus~ : Array[Note], counterpoint~ : Array[Note], meter~ : Meter, profile~ : RuleProfileConfig) -> Self
+
+pub(all) struct PipelineOutput {
+  validation : PairValidation
+  rhythm : RhythmSummary
+  contour : ContourSummary
+  harmony : HarmonySummary
+  motion : VoiceLeadingSummary
+  report : ReportDocument
+  recommendations : Array[Recommendation]
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct PitchCandidate {
+  note : Note
+  vertical_interval : Int
+  melodic_interval : Int
+  consonant : Bool
+  motion : MotionKind
+  score : Int
+} derive(Eq, ToJson, @debug.Debug)
 
 pub(all) enum PitchClass {
   C
@@ -242,6 +1185,104 @@ pub(all) enum PitchClass {
   A
   As
   B
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct PitchStatistics {
+  count : Int
+  minimum : Int
+  maximum : Int
+  mean : Int
+  median : Int
+  range : Int
+  distinct : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct PracticePlan {
+  title : String
+  objective : String
+  steps : Array[LessonStep]
+  estimated_minutes : Int
+  difficulty : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct PracticeResult {
+  completed : Int
+  total : Int
+  score : Int
+  next_stage : LessonStage
+  feedback : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct ProfileResult {
+  profile : String
+  score : Int
+  grade : String
+  findings : Int
+  passed : Bool
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct QualityGate {
+  name : String
+  status : GateStatus
+  score : Int
+  evidence : String
+  action : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct QualityGateReport {
+  status : GateStatus
+  gates : Array[QualityGate]
+  score : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct Recommendation {
+  code : String
+  priority : Int
+  title : String
+  action : String
+  evidence : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct RegisterBand {
+  low : Int
+  high : Int
+  count : Int
+  percentage : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct ReportDocument {
+  title : String
+  sections : Array[ReportSection]
+  format : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct ReportSection {
+  id : String
+  title : String
+  body : String
+  priority : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn ReportSection::new(id~ : String, title~ : String, body~ : String, priority~ : Int) -> Self
+
+pub(all) struct RhythmSummary {
+  notes : Int
+  measures : Int
+  downbeats : Int
+  offbeats : Int
+  syncopations : Int
+  tied_notes : Int
+  total_duration : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct RuleCard {
+  code : String
+  rule : RuleKind
+  topic : String
+  level : String
+  title : String
+  rationale : String
+  remedy : String
+  example : String
 } derive(Eq, ToJson, @debug.Debug)
 
 pub(all) enum RuleKind {
@@ -280,6 +1321,32 @@ pub fn RuleProfileConfig::renaissance() -> Self
 pub fn RuleProfileConfig::strict() -> Self
 pub fn RuleProfileConfig::with_profile(Self, RuleProfile) -> Self
 
+pub(all) enum RuleTopic {
+  Harmony
+  Melody
+  Rhythm
+  Cadence
+  VoiceLeading
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct Scorecard {
+  title : String
+  technical : Int
+  melodic : Int
+  harmonic : Int
+  rhythmic : Int
+  explainability : Int
+  total : Int
+  grade : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct SequenceEnvelope {
+  name : String
+  meter : Meter
+  notes : Array[NoteRow]
+  version : String
+} derive(Eq, ToJson, @debug.Debug)
+
 pub(all) enum SequenceIssue {
   EmptySequence
   NegativePitch(index~ : Int)
@@ -312,6 +1379,44 @@ pub(all) enum Species {
   Fifth
 } derive(Eq, ToJson, @debug.Debug)
 
+pub(all) enum TeachingLevel {
+  Foundation
+  Intermediate
+  Advanced
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct Transformation {
+  kind : TransformationKind
+  amount : Int
+  description : String
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum TransformationKind {
+  Transpose
+  Invert
+  Retrograde
+  Stretch
+  Compress
+  Rotate
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct TurningPoint {
+  index : Int
+  pitch : Int
+  before : Direction
+  after : Direction
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct VerticalEvent {
+  index : Int
+  lower : Int
+  upper : Int
+  semitones : Int
+  interval_class : Int
+  class : ConsonanceClass
+  inversion : Bool
+} derive(Eq, ToJson, @debug.Debug)
+
 pub(all) struct VoiceAssessment {
   role : VoiceRole
   range : VoiceRange
@@ -322,6 +1427,17 @@ pub(all) struct VoiceAssessment {
 } derive(Eq, ToJson, @debug.Debug)
 pub fn VoiceAssessment::passed(Self) -> Bool
 pub fn VoiceAssessment::span(Self) -> Int
+
+pub(all) struct VoiceLeadingSummary {
+  transitions : Int
+  accepted : Int
+  rejected : Int
+  contrary : Int
+  parallel : Int
+  similar : Int
+  oblique : Int
+  total_cost : Int
+} derive(Eq, ToJson, @debug.Debug)
 
 pub(all) enum VoiceRange {
   Soprano

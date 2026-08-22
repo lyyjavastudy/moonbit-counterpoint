@@ -29,8 +29,8 @@ toolchain or host changes.
 
 ## Test and source inventory
 
-The same run reported 706 passing tests in 1,017 ms. Excluding MoonBit's
-generated `_build` files, the repository contains 17 `.mbt` files and 10,723
-lines. The count is transparent: 1,542 production lines and 9,181 lines of
+The current run reports 711 passing tests. Excluding MoonBit's generated
+`_build` files, the repository contains 40 `.mbt` files and 17,380 lines. The
+count is transparent: 8,135 production lines and 9,245 lines of
 checked-in boundary and regression tests. Tests are included because they are
 executable MoonBit source and provide the reproducible rule corpus.

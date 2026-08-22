@@ -24,6 +24,10 @@ human-readable reports.
 - Pitch-class, register, voice-range, histogram, and transposition helpers.
 - Stable summaries with pass/review/fail grades and deterministic scores.
 - CSV and Markdown reports suitable for CLI output or editor integrations.
+- End-to-end pipeline output with quality gates, scorecards, practice plans,
+  profile comparison, history tracking, and batch variant reports.
+- Dependency-free interchange helpers for note rows, TSV, manifests, and
+  stable sequence fingerprints.
 
 ## Quick start
 
@@ -87,6 +91,12 @@ The library APIs can be composed into an application-specific CLI:
 | pitch.mbt / voices.mbt | Pitch classes, registers, voice ranges, and alignment |
 | metrics.mbt / reports.mbt | Scores, summaries, CSV, and Markdown output |
 | workflow.mbt | End-to-end pair validation facade |
+| rhythm.mbt / contour.mbt / statistics.mbt | Meter, contour, distribution, and motion statistics |
+| candidates.mbt / phrase_planner.mbt | Bounded candidate generation and phrase planning |
+| harmony_tools.mbt / voice_leading.mbt | Sonority profiles and motion constraints |
+| rule_catalog.mbt / exercise_catalog.mbt / teaching.mbt | Explainable rule and practice content |
+| pipeline.mbt / quality_gate.mbt / scorecards.mbt | Production analysis orchestration and quality gates |
+| interchange.mbt / report_sections.mbt / analysis_exports.mbt | Interchange and composable report artifacts |
 
 All public domain types are owned by the root package. The implementation is
 pure and deterministic, which keeps it suitable for teaching tools, snapshot
@@ -101,7 +111,7 @@ repository root when comparing toolchain versions.
 
 ## Testing
 
-The test suite contains rule examples, report checks, and a 700-case boundary
+The test suite contains rule examples, report checks, production API checks, and a 700-case boundary
 matrix. It exercises malformed timelines, extreme registers, zero and varied
 durations, duplicate onsets, transposition, scaling, pitch histograms, and
 voice-range calculations.
