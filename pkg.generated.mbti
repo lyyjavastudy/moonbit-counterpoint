@@ -8,6 +8,22 @@ import {
 // Values
 pub fn absolute_melodic_interval(Note, Note) -> Int
 
+pub fn active_at(Array[Note], Int) -> Array[Note]
+
+pub fn aligned_pairs(Array[Note], Array[Note]) -> Int
+
+pub fn analysis_csv(Analysis) -> String
+
+pub fn analysis_has_rule(Analysis, RuleKind) -> Bool
+
+pub fn analysis_indices(Analysis) -> Array[Int]
+
+pub fn analysis_is_empty(Analysis) -> Bool
+
+pub fn analysis_markdown(Analysis) -> String
+
+pub fn analysis_title(Analysis) -> String
+
 pub fn analyze_counterpoint(Array[Note], Array[Note], options? : AnalysisOptions) -> Analysis
 
 pub fn analyze_harmony(Array[Note], Array[Note], AnalysisOptions) -> Array[Finding]
@@ -16,7 +32,33 @@ pub fn analyze_melody(Array[Note], AnalysisOptions) -> Array[Finding]
 
 pub fn analyze_species_shape(Array[Note], Array[Note], AnalysisOptions) -> Array[Finding]
 
+pub fn analyze_with_profile(Array[Note], Array[Note], RuleProfileConfig) -> Analysis
+
+pub fn assess_voice(Array[Note], VoiceRole, VoiceRange) -> VoiceAssessment
+
+pub fn average_pitch(Array[Note]) -> Int
+
+pub fn compact_report(Analysis) -> String
+
+pub fn compare_profiles(Array[Note], Array[Note]) -> Array[AnalysisSummary]
+
+pub fn compare_scores(Analysis, Analysis, RuleProfileConfig) -> Int
+
+pub fn count_duration(Array[Note], Int) -> Int
+
+pub fn crossing_count(Array[Note], Array[Note]) -> Int
+
 pub fn direction(Note, Note) -> Direction
+
+pub fn finding_count(Analysis, RuleKind) -> Int
+
+pub fn finding_csv(Finding) -> String
+
+pub fn findings_for(Analysis, Severity) -> Array[Finding]
+
+pub fn findings_for_rule(Analysis, RuleKind) -> Array[Finding]
+
+pub fn first_pitch(Array[Note]) -> Int?
 
 pub fn format_analysis(Analysis) -> String
 
@@ -24,19 +66,95 @@ pub fn format_finding(Finding) -> String
 
 pub fn harmonic_interval(Note, Note) -> Int
 
+pub fn highest_severity(Analysis) -> Severity?
+
 pub fn interval_class(Int) -> Int
+
+pub fn is_black_key(Int) -> Bool
 
 pub fn is_consonance(Int) -> Bool
 
 pub fn is_dissonance(Int) -> Bool
 
+pub fn is_extreme_register(Int) -> Bool
+
 pub fn is_imperfect_consonance(Int) -> Bool
 
 pub fn is_perfect_consonance(Int) -> Bool
 
+pub fn last_pitch(Array[Note]) -> Int?
+
 pub fn melodic_interval(Note, Note) -> Int
 
 pub fn motion(Note, Note, Note, Note) -> MotionKind
+
+pub fn normalize_pitch(Int, Int, Int) -> Int
+
+pub fn note_end(Note) -> Int
+
+pub fn note_name(Note) -> String
+
+pub fn note_with_pitch(Note, Int) -> Note
+
+pub fn notes_at(Array[Note], Int) -> Array[Note]
+
+pub fn octave_number(Int) -> Int
+
+pub fn onset_span(Array[Note]) -> Int
+
+pub fn pitch_class(Int) -> PitchClass
+
+pub fn pitch_class_name(PitchClass) -> String
+
+pub fn pitch_histogram(Array[Note]) -> Array[Int]
+
+pub fn pitch_label(Int) -> String
+
+pub fn pitches(Array[Note]) -> Array[Int]
+
+pub fn profile_config(RuleProfile) -> RuleProfileConfig
+
+pub fn profile_labels() -> Array[String]
+
+pub fn register_distance(Array[Note], Int) -> Int
+
+pub fn report_line_count(Analysis) -> Int
+
+pub fn rule_is_harmonic(RuleKind) -> Bool
+
+pub fn rule_is_structural(RuleKind) -> Bool
+
+pub fn scale_time(Array[Note], Int) -> Array[Note]
+
+pub fn score_for(Analysis, RuleProfileConfig) -> Int
+
+pub fn semitone_distance(PitchClass, PitchClass) -> Int
+
+pub fn sequence_end(Array[Note]) -> Int
+
+pub fn sequence_markdown(SequenceReport) -> String
+
+pub fn sequence_report(Array[Note]) -> SequenceReport
+
+pub fn severity_rank(Severity) -> Int
+
+pub fn summarize(Analysis) -> AnalysisSummary
+
+pub fn summary_csv(AnalysisSummary) -> String
+
+pub fn tied_count(Array[Note]) -> Int
+
+pub fn total_sounding_duration(Array[Note]) -> Int
+
+pub fn transpose(Array[Note], Int) -> Array[Note]
+
+pub fn transpose_pitch_class(PitchClass, Int) -> PitchClass
+
+pub fn valid_profiles() -> Array[RuleProfileConfig]
+
+pub fn validate_pair(Array[Note], Array[Note], RuleProfileConfig) -> PairValidation
+
+pub fn voice_crossing_at(Note, Note) -> Bool
 
 // Errors
 
@@ -54,6 +172,19 @@ pub(all) struct AnalysisOptions {
   max_leap : Int
 } derive(Eq, ToJson, @debug.Debug)
 pub fn AnalysisOptions::default(species~ : Species) -> Self
+
+pub(all) struct AnalysisSummary {
+  total : Int
+  errors : Int
+  warnings : Int
+  infos : Int
+  structural : Int
+  harmonic : Int
+  score : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn AnalysisSummary::grade(Self) -> String
+pub fn AnalysisSummary::passed(Self) -> Bool
+pub fn AnalysisSummary::severity_total(Self) -> Int
 
 pub(all) enum Direction {
   Up
@@ -87,6 +218,32 @@ pub(all) struct Note {
 } derive(Eq, ToJson, @debug.Debug)
 pub fn Note::new(midi~ : Int, onset~ : Int, duration~ : Int, tied_from_previous? : Bool, label? : String) -> Self
 
+pub(all) struct PairValidation {
+  cantus : SequenceReport
+  counterpoint : SequenceReport
+  analysis : Analysis
+  summary : AnalysisSummary
+  profile : String
+} derive(Eq, ToJson, @debug.Debug)
+pub fn PairValidation::markdown(Self) -> String
+pub fn PairValidation::passed(Self) -> Bool
+pub fn PairValidation::quality_score(Self) -> Int
+
+pub(all) enum PitchClass {
+  C
+  Cs
+  D
+  Ds
+  E
+  F
+  Fs
+  G
+  Gs
+  A
+  As
+  B
+} derive(Eq, ToJson, @debug.Debug)
+
 pub(all) enum RuleKind {
   ParallelPerfect
   HiddenPerfect
@@ -98,6 +255,48 @@ pub(all) enum RuleKind {
   SpeciesRhythm
   CadenceShape
 } derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum RuleProfile {
+  Classroom
+  Strict
+  Renaissance
+  Custom
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct RuleProfileConfig {
+  profile : RuleProfile
+  allow_hidden_perfect : Bool
+  allow_weak_beat_dissonance : Bool
+  require_cadence : Bool
+  max_span : Int
+  max_leap : Int
+  max_consecutive_perfect : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn RuleProfileConfig::classroom() -> Self
+pub fn RuleProfileConfig::custom(allow_hidden_perfect~ : Bool, allow_weak_beat_dissonance~ : Bool, require_cadence~ : Bool, max_span~ : Int, max_leap~ : Int, max_consecutive_perfect~ : Int) -> Self
+pub fn RuleProfileConfig::is_valid(Self) -> Bool
+pub fn RuleProfileConfig::label(Self) -> String
+pub fn RuleProfileConfig::renaissance() -> Self
+pub fn RuleProfileConfig::strict() -> Self
+pub fn RuleProfileConfig::with_profile(Self, RuleProfile) -> Self
+
+pub(all) enum SequenceIssue {
+  EmptySequence
+  NegativePitch(index~ : Int)
+  InvalidDuration(index~ : Int)
+  NonMonotonicOnset(index~ : Int)
+  Overlap(index~ : Int)
+  DuplicateOnset(index~ : Int)
+  ExcessiveGap(index~ : Int)
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct SequenceReport {
+  note_count : Int
+  duration : Int
+  issues : Array[SequenceIssue]
+} derive(Eq, ToJson, @debug.Debug)
+pub fn SequenceReport::error_count(Self) -> Int
+pub fn SequenceReport::is_valid(Self) -> Bool
 
 pub(all) enum Severity {
   Error
@@ -111,6 +310,36 @@ pub(all) enum Species {
   Third
   Fourth
   Fifth
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct VoiceAssessment {
+  role : VoiceRole
+  range : VoiceRange
+  notes : Int
+  violations : Int
+  lowest : Int
+  highest : Int
+} derive(Eq, ToJson, @debug.Debug)
+pub fn VoiceAssessment::passed(Self) -> Bool
+pub fn VoiceAssessment::span(Self) -> Int
+
+pub(all) enum VoiceRange {
+  Soprano
+  Alto
+  Tenor
+  Bass
+  CustomRange(low~ : Int, high~ : Int)
+} derive(Eq, ToJson, @debug.Debug)
+pub fn VoiceRange::contains(Self, Int) -> Bool
+pub fn VoiceRange::high(Self) -> Int
+pub fn VoiceRange::low(Self) -> Int
+pub fn VoiceRange::width(Self) -> Int
+
+pub(all) enum VoiceRole {
+  Cantus
+  Counterpoint
+  Upper
+  Lower
 } derive(Eq, ToJson, @debug.Debug)
 
 // Type aliases

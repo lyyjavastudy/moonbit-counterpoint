@@ -1,0 +1,45 @@
+name: Publish Mooncakes package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Pre-publish validation
+        run: |
+          moon version --all
+          moon update
+          moon fmt
+          git diff --exit-code
+          moon check --target all
+          moon test --target all
+          version="$(sed -n 's/^version = "\(.*\)"/\1/p' moon.mod)"
+          test -n "$version"
+          echo "PUBLISHED_TAG=v$version" >> "$GITHUB_ENV"
+      - name: Publish
+        env:
+          MOONCAKES_TOKEN: ${{ secrets.MOONCAKES_TOKEN }}
+        run: |
+          test -n "$MOONCAKES_TOKEN"
+          mkdir -p "$HOME/.moon"
+          printf '%s' "$MOONCAKES_TOKEN" > "$HOME/.moon/credentials.json"
+          moon publish
+          rm -f "$HOME/.moon/credentials.json"
+      - name: Tag published commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f "ref=refs/tags/$PUBLISHED_TAG" -f "sha=$GITHUB_SHA"
+
