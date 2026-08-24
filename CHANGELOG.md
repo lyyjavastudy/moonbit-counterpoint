@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.2 - 2026-08-24
+
+- Refreshed the release metadata and publication workflow for the stable
+  MoonBit toolchain and the canonical module namespace.
+
 ## 0.3.1 - 2026-08-24
 
 - Expanded the production library with meter, contour, statistics, sonority,
