@@ -42,16 +42,22 @@ jobs:
         if: matrix.os != 'windows-latest'
         shell: bash
         run: |
-          version="$(moonc --version | sed -n 's/^moonc v\([0-9.]*\).*/\1/p')"
+          version="$(moonc -v | sed -n 's/^v\([0-9.]*\).*/\1/p')"
           test -n "$version"
-          awk -F. '($1 > 0) || ($1 == 0 && $2 > 10) || ($1 == 0 && $2 == 10 && $3 >= 9) { ok=1 } END { exit ok ? 0 : 1 }' <<< "$version"
+          awk -F. '($1 > 0) || ($1 == 0 && $2 > 10) || ($1 == 0 && $2 == 10 && $3 >= 9) { ok=1 } END { if (ok) exit 0; exit 1 }' <<< "$version"
       - name: Enforce MoonBit compiler floor on Windows
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          $version = (moonc --version) -replace '^moonc v([0-9.]+).*$', '$1'
-          if ([version]$version -lt [version]'0.10.9') {
-            throw "MoonBit compiler $version is below the supported floor 0.10.9"
+          $versionText = (moonc --version | Out-String).Trim()
+          if ($versionText -notmatch 'v([0-9]+)\.([0-9]+)\.([0-9]+)') {
+            throw "Unable to parse MoonBit compiler version: $versionText"
+          }
+          $major = [int]$Matches[1]
+          $minor = [int]$Matches[2]
+          $patch = [int]$Matches[3]
+          if (($major -eq 0) -and (($minor -lt 10) -or (($minor -eq 10) -and ($patch -lt 9)))) {
+            throw "MoonBit compiler $versionText is below the supported floor 0.10.9"
           }
       - name: Check all targets
         run: moon check --target all
