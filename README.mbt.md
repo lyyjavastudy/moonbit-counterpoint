@@ -93,6 +93,8 @@ The library APIs can be composed into an application-specific CLI:
 | workflow.mbt | End-to-end pair validation facade |
 | rhythm.mbt / contour.mbt / statistics.mbt | Meter, contour, distribution, and motion statistics |
 | candidates.mbt / phrase_planner.mbt | Bounded candidate generation and phrase planning |
+| phrase_windows.mbt / candidate_evidence.mbt | Local phrase partitioning and explainable candidate constraints |
+| analysis_triage.mbt / repair_suggestions.mbt | Repair prioritization and bounded single-event edits |
 | harmony_tools.mbt / voice_leading.mbt | Sonority profiles and motion constraints |
 | rule_catalog.mbt / exercise_catalog.mbt / teaching.mbt | Explainable rule and practice content |
 | pipeline.mbt / quality_gate.mbt / scorecards.mbt | Production analysis orchestration and quality gates |
@@ -105,13 +107,13 @@ tests, and future MIDI/MusicXML adapters.
 ## Benchmarks
 
 The repository includes a reproducible benchmark record in
-benchmarks/RESULTS.md. It reports the measured MoonBit commands, test count,
-source count, and a 1,000-note analysis workload. Re-run the commands from the
-repository root when comparing toolchain versions.
+benchmarks/RESULTS.md. It reports the measured MoonBit commands and a
+1,000-note analysis workload. Re-run the commands from the repository root
+when comparing toolchain versions.
 
 ## Testing
 
-The test suite contains rule examples, report checks, production API checks, and a 700-case boundary
+The test suite contains rule examples, report checks, production API checks, and a boundary
 matrix. It exercises malformed timelines, extreme registers, zero and varied
 durations, duplicate onsets, transposition, scaling, pitch histograms, and
 voice-range calculations.
@@ -127,9 +129,9 @@ moon coverage analyze
 ## CI
 
 GitHub Actions runs on Ubuntu, macOS, and Windows. It installs the current
-MoonBit stable toolchain, checks all targets, runs all tests, verifies
-formatting and generated interfaces, and publishes only through an explicit
-manual workflow.
+MoonBit stable toolchain, enforces the supported compiler floor, checks all
+targets, runs all tests, verifies formatting and generated interfaces, and
+publishes only through an explicit manual workflow.
 
 ## License
 

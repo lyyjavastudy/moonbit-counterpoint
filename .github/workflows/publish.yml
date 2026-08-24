@@ -21,6 +21,9 @@ jobs:
         run: |
           moon version --all
           moon update
+          compiler_version="$(moonc --version | sed -n 's/^moonc v\([0-9.]*\).*/\1/p')"
+          test -n "$compiler_version"
+          awk -F. '($1 > 0) || ($1 == 0 && $2 > 10) || ($1 == 0 && $2 == 10 && $3 >= 9) { ok=1 } END { exit ok ? 0 : 1 }' <<< "$compiler_version"
           moon fmt
           git diff --exit-code
           moon check --target all
@@ -42,4 +45,3 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f "ref=refs/tags/$PUBLISHED_TAG" -f "sha=$GITHUB_SHA"
-

@@ -1,18 +1,25 @@
 # Changelog
 
-## 0.3.0 - 2026-08-22
+## 0.3.1 - 2026-08-24
 
 - Expanded the production library with meter, contour, statistics, sonority,
   candidate, phrase-planning, teaching, quality-gate, pipeline, interchange,
   batch-report, and scorecard APIs.
-- Added 120 structured practice exercises and rule explanation cards.
-- Added end-to-end production API tests and raised the suite to 711 tests.
+- Added curated rule cards and 27 distinct practice exercises with deterministic
+  filtering and next-exercise selection.
+- Added phrase windows, explainable candidate constraints, analysis triage,
+  bounded repair suggestions, and voice-register reports.
+- Added end-to-end production API and boundary tests; all targets pass with
+  719 tests.
+- Raised the supported MoonBit compiler floor to 0.10.9 and verified locally
+  with the stable 0.10.10 toolchain.
 
 ## 0.2.0 - 2026-08-22
 
 - Added rule profiles, timeline validation, pitch/register helpers, voice-range
   assessment, summaries, scoring, and CSV/Markdown reports.
-- Added a 1,000-note CLI benchmark and a 700-case boundary/regression matrix.
+- Added a reproducible 1,000-note CLI benchmark and a boundary/regression
+  matrix.
 - Added all-target, three-platform MoonBit CI and a manual Mooncakes publish
   workflow.
 - Reorganized the README around user-facing project documentation.

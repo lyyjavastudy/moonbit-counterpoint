@@ -151,3 +151,111 @@ pub fn register_distance(notes : Array[Note], target : Int) -> Int {
     sum / notes.length()
   }
 }
+
+///|
+pub fn voice_role_name(role : VoiceRole) -> String {
+  match role {
+    Cantus => "cantus"
+    Counterpoint => "counterpoint"
+    Upper => "upper"
+    Lower => "lower"
+  }
+}
+
+///|
+pub fn voice_range_name(range : VoiceRange) -> String {
+  match range {
+    Soprano => "soprano"
+    Alto => "alto"
+    Tenor => "tenor"
+    Bass => "bass"
+    CustomRange(..) => "custom"
+  }
+}
+
+///|
+pub fn voice_assessment_status(assessment : VoiceAssessment) -> String {
+  if assessment.violations == 0 {
+    "pass"
+  } else if assessment.violations * 2 <= assessment.notes {
+    "review"
+  } else {
+    "fail"
+  }
+}
+
+///|
+pub fn voice_assessment_violation_rate(assessment : VoiceAssessment) -> Int {
+  if assessment.notes == 0 {
+    0
+  } else {
+    assessment.violations * 100 / assessment.notes
+  }
+}
+
+///|
+pub fn voice_assessment_repair_distance(assessment : VoiceAssessment) -> Int {
+  if assessment.notes == 0 {
+    0
+  } else {
+    let mut distance = 0
+    if assessment.lowest < assessment.range.low() {
+      distance += assessment.range.low() - assessment.lowest
+    }
+    if assessment.highest > assessment.range.high() {
+      distance += assessment.highest - assessment.range.high()
+    }
+    distance
+  }
+}
+
+///|
+pub fn voice_assessment_summary(assessment : VoiceAssessment) -> String {
+  "role=\{voice_role_name(assessment.role)} range=\{voice_range_name(assessment.range)} status=\{voice_assessment_status(assessment)} notes=\{assessment.notes} violations=\{assessment.violations} rate=\{voice_assessment_violation_rate(assessment)}%"
+}
+
+///|
+pub fn voice_assessment_markdown(assessment : VoiceAssessment) -> String {
+  let status = voice_assessment_status(assessment)
+  [
+    "## Voice register",
+    "",
+    "- Role: \{voice_role_name(assessment.role)}",
+    "- Range: \{voice_range_name(assessment.range)}",
+    "- Status: \{status}",
+    "- Violations: \{assessment.violations}/\{assessment.notes}",
+    "- Repair distance: \{voice_assessment_repair_distance(assessment)} semitones",
+  ].join("\n")
+}
+
+///|
+pub fn voices_fit(
+  lower : Array[Note],
+  upper : Array[Note],
+  lower_range : VoiceRange,
+  upper_range : VoiceRange,
+) -> Bool {
+  let lower_assessment = assess_voice(lower, Lower, lower_range)
+  let upper_assessment = assess_voice(upper, Upper, upper_range)
+  lower_assessment.passed() &&
+  upper_assessment.passed() &&
+  crossing_count(lower, upper) == 0
+}
+
+///|
+pub fn voice_assessment_is_extreme(assessment : VoiceAssessment) -> Bool {
+  assessment.notes > 0 &&
+  (
+    voice_assessment_violation_rate(assessment) >= 75 ||
+    voice_assessment_repair_distance(assessment) > assessment.range.width() / 2
+  )
+}
+
+///|
+pub fn voice_assessment_pitch_center(assessment : VoiceAssessment) -> Int {
+  if assessment.notes == 0 {
+    0
+  } else {
+    (assessment.lowest + assessment.highest) / 2
+  }
+}

@@ -50,6 +50,8 @@ pub fn api_health_message(Array[Note], Meter) -> String
 
 pub fn append_report_section(ReportDocument, ReportSection) -> ReportDocument
 
+pub fn apply_repair_suggestion(Array[Note], RepairSuggestion) -> Array[Note]
+
 pub fn apply_transformation(Array[Note], Transformation) -> Array[Note]
 
 pub fn assess_voice(Array[Note], VoiceRole, VoiceRange) -> VoiceAssessment
@@ -98,9 +100,13 @@ pub fn best_candidate(Array[PitchCandidate]) -> PitchCandidate?
 
 pub fn best_candidates(Array[PitchCandidate], Int) -> Array[PitchCandidate]
 
+pub fn best_evaluation(Array[CandidateEvaluation]) -> CandidateEvaluation?
+
 pub fn best_pipeline(PipelineInput) -> PipelineOutput
 
 pub fn best_profile_result(Array[ProfileResult]) -> ProfileResult?
+
+pub fn best_repair_suggestion(Array[RepairSuggestion]) -> RepairSuggestion?
 
 pub fn best_variant(Array[Note], Array[Array[Note]], RuleProfileConfig) -> Array[Note]?
 
@@ -112,13 +118,29 @@ pub fn cadence_message(PhrasePlan) -> String
 
 pub fn cadence_plan(Array[Note], Array[Note]) -> CadencePlan
 
+pub fn candidate_constraint_name(CandidateConstraint) -> String
+
 pub fn candidate_count_in_range(Array[PitchCandidate], Int, Int) -> Int
+
+pub fn candidate_evaluation_count(CandidateEvaluation) -> Int
+
+pub fn candidate_evaluation_failed(CandidateEvaluation) -> Array[CandidateConstraint]
+
+pub fn candidate_evaluation_has(CandidateEvaluation, CandidateConstraint) -> Bool
+
+pub fn candidate_evaluation_markdown(CandidateEvaluation) -> String
+
+pub fn candidate_evaluation_passes(CandidateEvaluation, CandidateConstraint) -> Bool
+
+pub fn candidate_evaluation_summary(CandidateEvaluation) -> String
 
 pub fn candidate_has_rule(PitchCandidate, RuleKind) -> Bool
 
 pub fn candidate_is_allowed(Note, Note?, Note, CandidatePolicy) -> Bool
 
 pub fn candidate_motion(Note, Note, Note, Note) -> MotionKind
+
+pub fn candidate_motion_name(MotionKind) -> String
 
 pub fn candidate_note(Note, Int) -> Note
 
@@ -215,6 +237,10 @@ pub fn envelope(String, Meter, Array[Note]) -> SequenceEnvelope
 pub fn envelope_notes(SequenceEnvelope) -> Array[Note]
 
 pub fn envelope_summary(SequenceEnvelope) -> String
+
+pub fn evaluate_candidate(Note, Note, Note, Note, Note, CandidatePolicy) -> CandidateEvaluation
+
+pub fn evaluate_candidates(Note, Note, Note, Note, Array[Note], CandidatePolicy) -> Array[CandidateEvaluation]
 
 pub fn evaluate_motion(Note, Note, Note, Note, MotionConstraint) -> MotionResult
 
@@ -510,13 +536,35 @@ pub fn pair_statistics(Array[Note], Array[Note]) -> PairStatistics
 
 pub fn parallel_perfect_indices(Array[Note], Array[Note]) -> Array[Int]
 
+pub fn partition_phrases(Array[Note], Meter, Int) -> PhrasePartition
+
 pub fn perfect_ratio(Array[Note], Array[Note]) -> Int
 
 pub fn phrase_is_cadential(PhrasePlan) -> Bool
 
 pub fn phrase_length(PhrasePlan) -> Int
 
+pub fn phrase_partition_boundaries(PhrasePartition) -> Array[Int]
+
+pub fn phrase_partition_for_meter(Array[Note], Meter) -> PhrasePartition
+
+pub fn phrase_partition_markdown(PhrasePartition) -> String
+
+pub fn phrase_partition_summary(PhrasePartition) -> String
+
 pub fn phrase_role_counts(PhrasePlan) -> Array[Int]
+
+pub fn phrase_window(PhrasePartition, Int) -> PhraseWindow?
+
+pub fn phrase_window_contains(PhraseWindow, Int) -> Bool
+
+pub fn phrase_window_count(PhrasePartition) -> Int
+
+pub fn phrase_window_duration(PhraseWindow) -> Int
+
+pub fn phrase_window_is_dense(PhraseWindow, Int) -> Bool
+
+pub fn phrase_window_summary(PhraseWindow) -> String
 
 pub fn pipeline_compare(PipelineOutput, PipelineOutput) -> Int
 
@@ -639,6 +687,24 @@ pub fn register_distance(Array[Note], Int) -> Int
 pub fn render_document(ReportDocument) -> String
 
 pub fn render_section(ReportSection) -> String
+
+pub fn repair_kind_name(RepairKind) -> String
+
+pub fn repair_suggestion_all_in_range(Array[RepairSuggestion], Int, Int) -> Bool
+
+pub fn repair_suggestion_average_score(Array[RepairSuggestion]) -> Int
+
+pub fn repair_suggestion_count(Array[RepairSuggestion]) -> Int
+
+pub fn repair_suggestion_for_index(Array[RepairSuggestion], Int) -> Array[RepairSuggestion]
+
+pub fn repair_suggestion_kinds(Array[RepairSuggestion]) -> Array[String]
+
+pub fn repair_suggestion_markdown(Array[RepairSuggestion]) -> String
+
+pub fn repair_suggestion_summary(RepairSuggestion) -> String
+
+pub fn repair_suggestions(Finding, Array[Note], Int, Int, Int) -> Array[RepairSuggestion]
 
 pub fn repeated_run_lengths(Array[Note]) -> Array[Int]
 
@@ -802,6 +868,36 @@ pub fn transpose_pitch_class(PitchClass, Int) -> PitchClass
 
 pub fn transpose_sequence(Array[Note], Int) -> Array[Note]
 
+pub fn triage_actions(AnalysisTriage) -> Array[String]
+
+pub fn triage_analysis(Analysis) -> AnalysisTriage
+
+pub fn triage_band(Analysis) -> TriageBand
+
+pub fn triage_band_name(TriageBand) -> String
+
+pub fn triage_compare(AnalysisTriage, AnalysisTriage) -> Int
+
+pub fn triage_csv(AnalysisTriage) -> String
+
+pub fn triage_is_actionable(AnalysisTriage) -> Bool
+
+pub fn triage_item(AnalysisTriage, Int) -> TriageItem?
+
+pub fn triage_item_count(AnalysisTriage) -> Int
+
+pub fn triage_item_summary(TriageItem) -> String
+
+pub fn triage_markdown(AnalysisTriage) -> String
+
+pub fn triage_priority_for_rule(AnalysisTriage, RuleKind) -> Int
+
+pub fn triage_rule_count(AnalysisTriage, RuleKind) -> Int
+
+pub fn triage_rule_order(AnalysisTriage) -> Array[RuleKind]
+
+pub fn triage_summary(AnalysisTriage) -> String
+
 pub fn trim_after(Array[Note], Int) -> Array[Note]
 
 pub fn trim_before(Array[Note], Int) -> Array[Note]
@@ -820,11 +916,31 @@ pub fn vertical_event(Note, Note, Int) -> VerticalEvent
 
 pub fn vertical_events(Array[Note], Array[Note]) -> Array[VerticalEvent]
 
+pub fn voice_assessment_is_extreme(VoiceAssessment) -> Bool
+
+pub fn voice_assessment_markdown(VoiceAssessment) -> String
+
+pub fn voice_assessment_pitch_center(VoiceAssessment) -> Int
+
+pub fn voice_assessment_repair_distance(VoiceAssessment) -> Int
+
+pub fn voice_assessment_status(VoiceAssessment) -> String
+
+pub fn voice_assessment_summary(VoiceAssessment) -> String
+
+pub fn voice_assessment_violation_rate(VoiceAssessment) -> Int
+
 pub fn voice_crossing_at(Note, Note) -> Bool
 
 pub fn voice_leading_quality(Array[Note], Array[Note]) -> Int
 
 pub fn voice_order_is_stable(Array[Note], Array[Note]) -> Bool
+
+pub fn voice_range_name(VoiceRange) -> String
+
+pub fn voice_role_name(VoiceRole) -> String
+
+pub fn voices_fit(Array[Note], Array[Note], VoiceRange, VoiceRange) -> Bool
 
 pub fn weakest_dimension(Scorecard) -> String
 
@@ -885,6 +1001,13 @@ pub fn AnalysisSummary::grade(Self) -> String
 pub fn AnalysisSummary::passed(Self) -> Bool
 pub fn AnalysisSummary::severity_total(Self) -> Int
 
+pub(all) struct AnalysisTriage {
+  band : TriageBand
+  items : Array[TriageItem]
+  total_findings : Int
+  repair_score : Int
+} derive(Eq, ToJson, @debug.Debug)
+
 pub(all) struct BatchReport {
   labels : Array[String]
   summaries : Array[AnalysisSummary]
@@ -923,6 +1046,20 @@ pub(all) struct CandidateBatch {
   rejected : Int
 } derive(Eq, ToJson, @debug.Debug)
 
+pub(all) enum CandidateConstraint {
+  Range
+  Consonance
+  Leap
+  Motion
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct CandidateEvaluation {
+  candidate : PitchCandidate
+  constraints : Array[ConstraintEvidence]
+  score : Int
+  accepted : Bool
+} derive(Eq, ToJson, @debug.Debug)
+
 pub(all) struct CandidatePolicy {
   low : Int
   high : Int
@@ -939,6 +1076,13 @@ pub(all) enum ConsonanceClass {
   Perfect
   Imperfect
   Dissonant
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct ConstraintEvidence {
+  constraint : CandidateConstraint
+  passed : Bool
+  score : Int
+  detail : String
 } derive(Eq, ToJson, @debug.Debug)
 
 pub(all) enum ContourStep {
@@ -1120,6 +1264,13 @@ pub fn PairValidation::markdown(Self) -> String
 pub fn PairValidation::passed(Self) -> Bool
 pub fn PairValidation::quality_score(Self) -> Int
 
+pub(all) struct PhrasePartition {
+  windows : Array[PhraseWindow]
+  total_notes : Int
+  total_duration : Int
+  window_duration : Int
+} derive(Eq, ToJson, @debug.Debug)
+
 pub(all) struct PhrasePlan {
   segments : Array[PhraseSegment]
   cadence : CadencePlan
@@ -1143,6 +1294,18 @@ pub(all) struct PhraseSegment {
   notes : Int
   pitch_range : Int
   density : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct PhraseWindow {
+  index : Int
+  start_index : Int
+  end_index : Int
+  start_time : Int
+  end_time : Int
+  note_count : Int
+  pitch_range : Int
+  density : Int
+  anchor_beat : String
 } derive(Eq, ToJson, @debug.Debug)
 
 pub(all) struct PipelineInput {
@@ -1248,6 +1411,22 @@ pub(all) struct RegisterBand {
   high : Int
   count : Int
   percentage : Int
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum RepairKind {
+  StepUp
+  StepDown
+  ReduceLeap
+  MoveIntoRange
+  PreserveCadence
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct RepairSuggestion {
+  index : Int
+  kind : RepairKind
+  replacement_midi : Int
+  score : Int
+  rationale : String
 } derive(Eq, ToJson, @debug.Debug)
 
 pub(all) struct ReportDocument {
@@ -1398,6 +1577,23 @@ pub(all) enum TransformationKind {
   Stretch
   Compress
   Rotate
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) enum TriageBand {
+  Critical
+  Attention
+  Healthy
+} derive(Eq, ToJson, @debug.Debug)
+
+pub(all) struct TriageItem {
+  rule : RuleKind
+  count : Int
+  errors : Int
+  warnings : Int
+  infos : Int
+  priority : Int
+  band : TriageBand
+  action : String
 } derive(Eq, ToJson, @debug.Debug)
 
 pub(all) struct TurningPoint {
