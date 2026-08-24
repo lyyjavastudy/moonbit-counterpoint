@@ -49,7 +49,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          $versionText = (moonc --version | Out-String).Trim()
+          $versionText = (moonc -v | Out-String).Trim()
           if ($versionText -notmatch 'v([0-9]+)\.([0-9]+)\.([0-9]+)') {
             throw "Unable to parse MoonBit compiler version: $versionText"
           }
